@@ -5,6 +5,7 @@ O objetivo deste trabalho é permitir os alunos aplicarem os conceitos e funcion
 Nesse trabalho, a ideia é realizar a parte de negócio do back-end do trabalho para futuramente unificar com a API.
 
 - Instruções gerais:
+
   O trabalho possui um tema livre com algumas restrições quanto às funcionalidades, ou seja, o(s) aluno(s) poderá(ão) trabalhar com um domínio de aplicação de seu 
   interesse. 
   

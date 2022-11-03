@@ -4,6 +4,8 @@ function validarLivro(livros) {
         livros.editora && livros.ano_publi
 }
 
+// blalbalbalbala
+
 module.exports = {
     validarLivro
 }

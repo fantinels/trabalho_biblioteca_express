@@ -7,8 +7,8 @@ async function inserirCliente(clientes) {
 
   await cliente.connect();
 
-  const res = await cliente.query('INSERT INTO cliente(id_cliente,nome_cliente,matricula,telefone) VALUES ($1,$2,$3,$4) RETURNING *', 
-      [clientes.id_cliente, clientes.nome_cliente,clientes.matricula,clientes.telefone]);
+  const res = await cliente.query('INSERT INTO cliente(nome_cliente,matricula,telefone) VALUES ($1,$2,$3) RETURNING *', 
+      [clientes.nome_cliente,clientes.matricula,clientes.telefone]);
   await cliente.end();
   return res.rows[0]
 }
@@ -26,7 +26,7 @@ async function listarCliente() {
 async function buscarPorIdCliente(id) {
   const cliente = new Client(conexao)
   await cliente.connect();
-  const res = await cliente.query('SELECT * FROM cliente WHERE id_cliente = $1',[id.id_cliente]);
+  const res = await cliente.query('SELECT * FROM cliente WHERE id_cliente = $1',[id]);
   await cliente.end();
   return res.rows[0];
 }
@@ -35,7 +35,7 @@ async function buscarPorIdCliente(id) {
 async function deletarCliente(id) {
   const cliente = new Client(conexao)
   await cliente.connect();
-  const res = await cliente.query('DELETE FROM cliente WHERE id_cliente = $1 RETURNING *',[id.id_cliente]);
+  const res = await cliente.query('DELETE FROM cliente WHERE id_cliente = $1 RETURNING *',[id]);
   await cliente.end();
   return res.rows[0];
 }
@@ -47,8 +47,8 @@ async function atualizarClientes(id, clientes) {
     await cliente.connect();
 
     const res = 
-    await cliente.query('UPDATE cliente SET nome_cliente=$1,telefone=$2 where id_cliente = $3 RETURNING *', 
-        [clientes.nome_cliente, clientes.telefone, id]);
+    await cliente.query('UPDATE cliente SET nome_cliente=$1,matricula=$2,telefone=$3 where id_cliente = $4 RETURNING *', 
+        [clientes.nome_cliente, clientes.matricula, clientes.telefone, id]);
     await cliente.end();
 
     return res.rows[0];
@@ -57,8 +57,8 @@ async function atualizarClientes(id, clientes) {
 
 
 module.exports = {
-    listarCliente,
     inserirCliente,
+    listarCliente,
     buscarPorIdCliente,
     deletarCliente,
     atualizarClientes

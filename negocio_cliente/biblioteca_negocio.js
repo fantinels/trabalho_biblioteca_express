@@ -1,66 +1,70 @@
-﻿const bibliotecaPersistenciacliente = require('../persistencia_cliente/biblioteca_persistencia')
+﻿const bibliotecaPersistenciaCliente = require('../persistencia_cliente/biblioteca_persistencia')
 const {validarCliente} = require('./biblioteca_validacao')
 
-/////////////////////////////////////////////////////////////////////
-// Validação para INSERIR LIVROS
+// Validação para INSERIR CLIENTES
 async function inserirCliente(clientes) {
-  if(clientes && clientes.id_cliente && clientes.nome_cliente && clientes.matricula && clientes.editora && clientes.telefone) {
-      const produtoInserido = await bibliotecaPersistenciacliente.inserirCliente(clientes)
-      return produtoInserido;
-  }
-  else {
-      throw {id: 400, msg: "Falta parâmetros"};
-  }
+    if(clientes && clientes.nome_cliente && clientes.matricula && clientes.telefone) {
+        const produtoInserido = await bibliotecaPersistenciaCliente.inserirCliente(clientes)
+        return produtoInserido;
+    }
+    else {
+        throw {id: 400, msg: "Falta parâmetros"};
+    }
 }
+
 /////////////////////////////////////////////////////////////////////
 
-// Validação para LISTAR LIVROS
+// Validação para LISTAR CLIENTES
 async function listarCliente() {
-  return await bibliotecaPersistenciacliente.listarCliente()
+  return await bibliotecaPersistenciaCliente.listarCliente()
 }
+
 /////////////////////////////////////////////////////////////////////
-// Validação para BUSCAR POR ID DE LIVROS
+
+// Validação para BUSCAR POR ID DE CLIENTES
 async function buscarPorIdCliente(clientes) {
-  const idProcuradoCliente = await bibliotecaPersistenciacliente.buscarPorIdCliente(clientes);
+  const idProcuradoCliente = await bibliotecaPersistenciaCliente.buscarPorIdCliente(clientes);
   if(!idProcuradoCliente) {
-      throw {id: 404, msg: "id do cliente não encontrado"};
+      throw {id: 404, msg: "Id do cliente não encontrado"};
   }
-  return idProcurado;
+  return idProcuradoCliente;
 
 }
 
 /////////////////////////////////////////////////////////
-//Atualizando cliente 
-async function atualizarClientes(id, clientes) {
+
+// Validação para ATUALIZAR CLIENTES
+async function atualizarCliente(id, clientes) {
   if(validarCliente(clientes)) {
       const clienteAtualizado = await buscarPorIdCliente(id);
 
       if(clienteAtualizado) {
-          return await bibliotecaPersistenciacliente.atualizarClientes(id, clientes);
+          return await bibliotecaPersistenciaCliente.atualizarClientes(id, clientes);
       }
       
   }
   else {
-      throw {id: 400, msg: "Parâmetros inválidos ou incompletos"};
+      throw {id: 400, msg: "Parâmetros incompletos"};
   }
   
 }
 
 /////////////////////////////////////////////////////////
-//Deletando cliente 
+
+// Validação para DELETAR CLIENTES
 async function deletarCliente(id) {
-  const deletadonCliente = await bibliotecaPersistenciacliente.deletarCliente(id);
-  if (!deletadonCliente) {
-      throw {id: 404, msg: "cliente não encontrado"};
+  const deletadoCliente = await bibliotecaPersistenciaCliente.deletarCliente(id);
+  if (!deletadoCliente) {
+      throw {id: 404, msg: "Cliente não encontrado"};
   }
 
-  return deletadonCliente;
+  return deletadoCliente;
 }
 
 module.exports = {
   inserirCliente,
   listarCliente,
   buscarPorIdCliente,
-  atualizarClientes,
+  atualizarCliente,
   deletarCliente
 }

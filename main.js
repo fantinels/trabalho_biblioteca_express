@@ -6,12 +6,12 @@ async function main() {
     // VER COM O SOR COMO TRATAR CASOS DE SUCESSO E INSUCESSO
 
     // RETIRANDO UM LIVRO DA BIBLIOTECA
-    // await livroPersistencia.retirarLivros(1, 2)
-    // console.log("Livro retirado com sucesso!")
+    await livroPersistencia.retirarLivros(1, 1)
+    console.log("Livro retirado com sucesso!")
 
     // DEVOLVENDO UM LIVRO DA BIBLIOTECA
-    // await livroPersistencia.devolverLivros(10)
-    // console.log("Livro devolvido com sucesso!")
+    await livroPersistencia.devolverLivros(1)
+    console.log("Livro devolvido com sucesso!")
 
     //////////////////////////////////////////////////////////////////
 

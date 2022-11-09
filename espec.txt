@@ -1,0 +1,26 @@
+﻿Funções a serem testadas:
+
+O código desenvolvido tem os seguintes casos:
+
+    - Inserção de livros (verificação se todos os parâmetros estão preenchidos)
+    - Inserção de clientes (verificação se todos os parâmetros estão preenchidos)
+    - Listagem de livros com seus respectivos clientes
+    - Listagem somente dos livros
+    - Listagem somente de clientes
+    - Busca por ID de livros (verificação se o ID existe)
+    - Busca por ID de clientes (verificação se o ID existe)
+    - Busca por nome de livros (verificação se o parâmetro está preenchido)
+        - Caso o livro não exista, retorna uma lista vazia
+    - Busca por status disponível | indisponível (verificação se o parâmetro está preenchido)
+        - Caso o status digitado esteja errado, retorna uma lista vazia
+    - Busca por nome de autor (verificação se o parâmetro está preenchido)
+        - Caso o autor não exista, retorna uma lista vazia
+    - Deletar livro por ID (verificação se ID existe)
+    - Deletar cliente por ID (verificação de ID existe)
+    - Atualizar livros (verificação se o ID existe e se os parâmetros foram preenchidos)
+    - Atualizar clientes (verificação se o ID existe e se os parâmetros foram preenchidos)
+    - Alugando/Retirando um livro (verificação se está disponível)
+        - Ao alugar um livro, o campo de status muda para indisponível e o campo de id_cliente recebe o ID do cliente que alugou
+        - Caso outro cliente queira alugar um livro indisponível, não conseguirá
+    - Devolver livros
+        - Ao devolver um livro, o campo de status volta a ficar disponível e o campo de id_cliente fica vazio (null)

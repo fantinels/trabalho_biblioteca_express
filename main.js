@@ -41,8 +41,8 @@ async function main() {
     /////////////////////////////////////////////////////////////////////
 
     // Caso de sucesso para listagem de livros
-    const listaLivros = await bibliotecaNegocioLivro.listarLivros()
-    console.log("Lista de livros: ", listaLivros)
+    const listaLivros = await bibliotecaNegocioLivro.listarLivros();
+    console.log("Lista de Livros: ", listaLivros);
 
     /////////////////////////////////////////////////////////////////////
 

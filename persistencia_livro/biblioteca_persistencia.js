@@ -22,11 +22,28 @@ async function listarLivros() {
 
     await cliente.connect();
 
-    const res = await cliente.query('SELECT * FROM livros ORDER BY id_livro');
+    const sql = `SELECT livros.id_livro, livros.nome_livro, 
+                cliente.matricula as matricula_cli, cliente.nome_cliente as nome_cliente, cliente.telefone as telefone_cliente
+                FROM livros
+                INNER JOIN cliente ON (livros.id_cliente = cliente.id_cliente)`
+
+    const res = await cliente.query(sql);
+
+    let listaLivros = res.rows.map(function (data) {
+        return {
+            id_livro: data.id_livro,
+            nome_livro: data.nome_livro,
+            cliente: {
+                matricula: data.matricula_cli,
+                nome_cliente: data.nome_cliente,
+                telefone: data.telefone_cliente
+            }
+        };
+    })
 
     await cliente.end();
 
-    return res.rows;
+    return listaLivros;
 
 }
 

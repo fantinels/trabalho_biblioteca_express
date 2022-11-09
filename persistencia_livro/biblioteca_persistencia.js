@@ -96,10 +96,18 @@ async function retirarLivros(id_livro, id_cliente) {
 
     await cliente.connect();
 
-    const res = await cliente.query('SELECT fn_retiralivros($1, $2)', 
+    let res
+    
+    try {
+        res = await cliente.query('SELECT fn_retiralivros($1, $2)', 
         [id_livro, id_cliente]);
+    } catch (error) {
+        throw 'Livro indisponível - NÃO pode ser retirado'
+    }
 
-    await cliente.end();
+    finally {
+        await cliente.end();
+    }
 
     return res.rows[0];
 

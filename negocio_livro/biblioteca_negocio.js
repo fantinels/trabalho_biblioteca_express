@@ -14,6 +14,13 @@ async function inserirLivros(livros) {
 
 /////////////////////////////////////////////////////////////////////
 
+// Validação para LISTAR LIVROS E CLIENTES
+async function listarLivrosClientes() {
+    return await bibliotecaPersistencia.listarLivrosClientes()
+}
+
+/////////////////////////////////////////////////////////////////////
+
 // Validação para LISTAR LIVROS
 async function listarLivros() {
     return await bibliotecaPersistencia.listarLivros()
@@ -98,6 +105,7 @@ async function atualizarLivro(id, livros) {
 
 module.exports = {
     inserirLivros,
+    listarLivrosClientes,
     listarLivros,
     buscarId,
     buscarNome,

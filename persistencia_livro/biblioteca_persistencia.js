@@ -16,8 +16,8 @@ async function inserirLivros(livros) {
 
 }
 
-// Função para LISTAR LIVROS
-async function listarLivros() {
+// Função para LISTAR LIVROS E CLIENTES
+async function listarLivrosClientes() {
     const cliente = new Client(conexao)
 
     await cliente.connect();
@@ -44,6 +44,20 @@ async function listarLivros() {
     await cliente.end();
 
     return listaLivros;
+
+}
+
+// Função para LISTAR LIVROS
+async function listarLivros() {
+    const cliente = new Client(conexao)
+
+    await cliente.connect();
+
+    const res = await cliente.query('SELECT * FROM livros');
+
+    await cliente.end();
+
+    return res.rows;
 
 }
 
@@ -177,6 +191,7 @@ async function atualizarLivros(id, livros) {
 
 module.exports = {
     inserirLivros,
+    listarLivrosClientes,
     listarLivros,
     buscarPorIdLivros,
     buscarPorNomeLivros,

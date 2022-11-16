@@ -1,5 +1,5 @@
-﻿const bibliotecaPersistenciaCliente = require('../persistencia_cliente/biblioteca_persistencia')
-const {validarCliente} = require('./biblioteca_validacao')
+﻿const bibliotecaPersistenciaCliente = require('../persistencia/cliente_persistencia')
+const {validarCliente} = require('./validacao')
 
 // Validação para INSERIR CLIENTES
 async function inserirCliente(clientes) {

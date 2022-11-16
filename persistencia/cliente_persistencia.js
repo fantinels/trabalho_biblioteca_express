@@ -1,5 +1,5 @@
 ﻿const { Client } = require('pg')
-const { conexao } = require('../persistencia_livro/conexao')
+const { conexao } = require('./conexao')
 
 // Função para INSERIR CLIENTES
 async function inserirCliente(clientes) {

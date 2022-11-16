@@ -1,5 +1,5 @@
-﻿const bibliotecaPersistencia = require('../persistencia_livro/biblioteca_persistencia')
-const {validarLivro} = require('./biblioteca_validacao')
+﻿const bibliotecaPersistencia = require('../persistencia/livro_persistencia')
+const {validarLivro} = require('./validacao')
 
 // Validação para INSERIR LIVROS
 async function inserirLivros(livros) {
@@ -100,8 +100,6 @@ async function atualizarLivro(id, livros) {
         throw {id: 400, msg: "Falta parâmetros"};
     }
 }
-
-// VER COM O SOR COMO TRATAR CASOS DE SUCESSO E INSUCESSO
 
 module.exports = {
     inserirLivros,

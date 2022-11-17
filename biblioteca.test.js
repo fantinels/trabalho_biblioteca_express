@@ -1,8 +1,64 @@
-﻿const bibliotecaLivro = require('./negocio/livro_negocio')
-const bibliotecaCliente = require('./negocio/cliente_negocio')
-const { listarLivros, buscarPorIdLivros, listarLivrosClientes, buscarPorNomeLivros, buscarPorStatusLivros, buscarPorAutorLivros } = require('./persistencia/livro_persistencia')
-const { listarCliente, buscarPorIdCliente } = require('./persistencia/cliente_persistencia')
+﻿const bibliotecaLivro = require('./persistencia/livro_persistencia')
+const bibliotecaCliente = require('./persistencia/cliente_persistencia')
 
+let dadosLivrosInicial = bibliotecaLivro.listarLivros(
+    {id: 1, isbn: '978-85-390-0022-7', nome_livro: 'A Bússola de Ouro', nome_autor: 'Phillip Pulman', editora: 'Ponto de Leitura', 
+        ano_publi: '07/1995', status: 'disponível'},
+    {id: 2, isbn: '978-65-5535-155-2', nome_livro: '23 motivos para não se apaixonar', nome_autor: 'Gabie Fernandes', editora: 'Planeta', 
+        ano_publi: '10/2020', status: 'disponível'},
+    {id: 3, isbn: '978-85-65765-48-0', nome_livro: 'Mentirosos', nome_autor: 'E. Lockhart', editora: 'Seguinte', 
+        ano_publi: '05/2014', status: 'disponível'})
+
+let dadosLivrosClientesInicial = bibliotecaLivro.listarLivrosClientes(
+    {id_livro: 1, nome_livro: 'A Seleção', cliente: {matricula: '489562', nome_cliente: 'Vivi', telefone: '94589-5462'}})
+
+let dadosLivrosInserir = bibliotecaLivro.listarLivros(
+    {id: 1, isbn: '978-85-390-0022-7', nome_livro: 'A Bússola de Ouro', nome_autor: 'Phillip Pulman', editora: 'Ponto de Leitura', 
+        ano_publi: '07/1995', status: 'disponível'},
+    {id: 2, isbn: '978-65-5535-155-2', nome_livro: '23 motivos para não se apaixonar', nome_autor: 'Gabie Fernandes', editora: 'Planeta', 
+        ano_publi: '10/2020', status: 'disponível'},
+    {id: 3, isbn: '978-85-65765-48-0', nome_livro: 'Mentirosos', nome_autor: 'E. Lockhart', editora: 'Seguinte', 
+        ano_publi: '05/2014', status: 'disponível'},
+    {id: 4, isbn: '978-85-65765-57-2', nome_livro: 'Por Lugares Incríveis', nome_autor: 'Jennifer Niven', editora: 'Seguinte', 
+    ano_publi: '01/2015', status: 'disponível'})
+
+let dadosLivrosDeletar = bibliotecaLivro.listarLivros(
+    {id: 1, isbn: '978-85-390-0022-7', nome_livro: 'A Bússola de Ouro', nome_autor: 'Phillip Pulman', editora: 'Ponto de Leitura', 
+        ano_publi: '07/1995', status: 'disponível'},
+    {id: 2, isbn: '978-65-5535-155-2', nome_livro: '23 motivos para não se apaixonar', nome_autor: 'Gabie Fernandes', editora: 'Planeta', 
+        ano_publi: '10/2020', status: 'disponível'},
+    {id: 3, isbn: '978-85-65765-48-0', nome_livro: 'Mentirosos', nome_autor: 'E. Lockhart', editora: 'Seguinte', 
+        ano_publi: '05/2014', status: 'disponível'})
+
+let dadosLivrosAtualizar = bibliotecaLivro.listarLivros(
+    {id: 1, isbn: '978-85-390-0022-7', nome_livro: 'A Bússola de Ouro', nome_autor: 'Phillip Pulman', editora: 'Ponto de Leitura', 
+        ano_publi: '07/1995', status: 'disponível'},
+    {id: 2, isbn: '978-65-5535-155-2', nome_livro: '23 motivos para não se apaixonar', nome_autor: 'Gabie Fernandes', editora: 'Planeta', 
+        ano_publi: '10/2020', status: 'disponível'},
+    {id: 3, isbn: '978-85-62409-88-2', nome_livro: 'A Garota do Lago', nome_autor: 'Charlie Donlea', editora: 'Faro Editorial', 
+        ano_publi: '02/2017', status: 'disponível'})
+
+let dadosClienteInicial = bibliotecaCliente.listarCliente (
+    {id_cliente: 1, nome_cliente: 'Gabriélen', matricula: '478956', telefone: '98546-98564'},
+    {id_cliente: 2, nome_cliente: 'Paola', matricula: '789546', telefone: '98795-2659'}
+)
+
+let dadosClienteInserir = bibliotecaCliente.listarCliente (
+    {id_cliente: 1, nome_cliente: 'Gabriélen', matricula: '478956', telefone: '98546-98564'},
+    {id_cliente: 2, nome_cliente: 'Paola', matricula: '789546', telefone: '98795-2659'},
+    {id_cliente: 3, nome_cliente: 'Gabriel', matricula: '489562', telefone: '97856-2356'}
+)
+
+let dadosClienteAtualizar = bibliotecaCliente.listarCliente (
+    {id_cliente: 1, nome_cliente: 'Gabi', matricula: '568946', telefone: '97895-4589'},
+    {id_cliente: 2, nome_cliente: 'Paola', matricula: '789546', telefone: '98795-2659'},
+    {id_cliente: 3, nome_cliente: 'Gabriel', matricula: '489562', telefone: '97856-2356'}
+)
+
+let dadosClienteDeletar = bibliotecaCliente.listarCliente (
+    {id_cliente: 1, nome_cliente: 'Gabi', matricula: '568946', telefone: '97895-4589'},
+    {id_cliente: 2, nome_cliente: 'Paola', matricula: '789546', telefone: '98795-2659'}
+)
 
 //-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=
 //  LIVROS
@@ -10,17 +66,18 @@ const { listarCliente, buscarPorIdCliente } = require('./persistencia/cliente_pe
 
 // Cenário de Sucesso - Listar Livros e Clientes
 test("Listar retorna os livros e seus clientes", () => {
-    expect(bibliotecaLivro.listarLivrosClientes()).toEqual(listarLivrosClientes())
+    expect(bibliotecaLivro.listarLivrosClientes()).toEqual(dadosLivrosClientesInicial)
 })
 
 // Cenário de Sucesso - Listar Livros
-test("Listar retorna dados da tabela de livros", () => {
-    expect(bibliotecaLivro.listarLivros()).toEqual(listarLivros())
+test("Listar retorna lista de livros", () => {
+    expect(bibliotecaLivro.listarLivros()).toEqual(dadosLivrosInicial)
 })
 
 // Cenário de Sucesso - Inserir Livros
-test("Inserir livro Por Lugares Incríveis deve ser inserido na tabela com ID gerado", () => {
+test("Inserir livro Por Lugares Incríveis deve ser inserido na tabela com ID 4 gerado", () => {
     const livroInserido = {
+        id: 4,
         isbn: '978-85-65765-57-2',
         nome_livro: 'Por Lugares Incríveis',
         nome_autor: 'Jennifer Niven',
@@ -29,50 +86,30 @@ test("Inserir livro Por Lugares Incríveis deve ser inserido na tabela com ID ge
         status: 'disponível'
     }
     bibliotecaLivro.inserirLivros(livroInserido)
-    expect(bibliotecaLivro.listarLivros()).toEqual(listarLivros())
-})
-
-// Cenário de Sucesso - Buscar por ID de Livros
-test("Buscar por ID 4 deve retornar o livro 4", () => {
-    expect(bibliotecaLivro.buscarId(4)).toEqual(buscarPorIdLivros())
-})
-
-// Cenário de Sucesso - Buscar por NOME de Livros
-test("Buscar por nome 'A Bússola de Ouro' deve retornar o livro 'A Bússola de Ouro'", () => {
-    expect(bibliotecaLivro.buscarNome('A Bússola de Ouro')).toEqual(buscarPorNomeLivros())
-})
-
-// Cenário de Sucesso - Buscar por STATUS
-test("Buscar por status 'disponível' deve retornar os livros disponíveis", () => {
-    expect(bibliotecaLivro.buscarStatus('disponível')).toEqual(buscarPorStatusLivros())
-})
-
-// Cenário de Sucesso - Buscar por AUTOR
-test("Buscar por autor 'E. Lockhart' deve retornar os livros deste autor", () => {
-    expect(bibliotecaLivro.buscarAutor('E. Lockhart')).toEqual(buscarPorAutorLivros())
+    expect(bibliotecaLivro.listarLivros()).toEqual(dadosLivrosInserir)
 })
 
 // Cenário de Sucesso - Deletar Livros
 test("Apagar livro de ID 4 deve remover o livro da tabela", () => {
-    bibliotecaLivro.deletarLivro(4)
-    expect(bibliotecaLivro.listarLivros()).toEqual(listarLivros())
+    bibliotecaLivro.deletarLivros(4)
+    expect(bibliotecaLivro.listarLivros()).toEqual(dadosLivrosDeletar)
 })
 
 // Cenário de Sucesso - Atualizar Livros
-test("Alterar livro 'A Garota do Lago' para 'A Seleção' com os seus respectivos dados, deve atualizar a tabela de livro", () => {
+test("Alterar livro de ID 3 para 'A Garota do Lago' com os seus respectivos dados, deve atualizar a tabela de livro", () => {
     const livroAltualizado = {
-        isbn: '978-85-65765-01-5',
-        nome_livro: 'A Seleção',
-        nome_autor: 'Kiera Kass',
-        editora: 'Seguinte',
-        ano_publi: '04/2012',
+        isbn: '978-85-62409-88-2',
+        nome_livro: 'A Garota do Lago',
+        nome_autor: 'Charlie Donlea',
+        editora: 'Faro Editorial',
+        ano_publi: '02/2017',
         status: 'disponível'
     }
 
-    const idAlterar = 1
+    const idAlterar = 3
 
-    bibliotecaLivro.atualizarLivro(idAlterar, livroAltualizado)
-    expect(bibliotecaLivro.listarLivros()).toEqual(listarLivros())
+    bibliotecaLivro.atualizarLivros(idAlterar, livroAltualizado)
+    expect(bibliotecaLivro.listarLivros()).toEqual(dadosLivrosAtualizar)
 })
 
 //-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=
@@ -80,42 +117,38 @@ test("Alterar livro 'A Garota do Lago' para 'A Seleção' com os seus respectivo
 //-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=-=-==-==-=-==-=
 
 // Cenário de Sucesso - Listar Clientes
-test("Listar retorna dados da tabela de clientes", () => {
-    expect(bibliotecaCliente.listarCliente()).toEqual(listarCliente())
+test("Listar retorna lista de clientes", () => {
+    expect(bibliotecaCliente.listarCliente()).toEqual(dadosClienteInicial)
 })
 
 // Cenário de Sucesso - Inserir Clientes
-test("Inserir cliente Vivi deve ser inserido na tabela com ID gerado", () => {
+test("Inserir cliente 3 deve ser inserido na tabela com ID 3 gerado", () => {
     const clienteInserido = {
-        nome_cliente: "Vivi",
-        matricula: "489562", 
-        telefone:"94589-5462"
+        id_cliente: 3, 
+        nome_cliente: 'Gabriel', 
+        matricula: '489562', 
+        telefone: '97856-2356'
     }
     bibliotecaCliente.inserirCliente(clienteInserido)
-    expect(bibliotecaCliente.listarCliente()).toEqual(listarCliente())
-})
-
-// Cenário de Sucesso - Buscar por ID de Clientes
-test("Buscar por ID 5 deve retornar o cliente 5", () => {
-    expect(bibliotecaCliente.buscarPorIdCliente(5)).toEqual(buscarPorIdCliente())
+    expect(bibliotecaCliente.listarCliente()).toEqual(dadosClienteInserir)
 })
 
 // Cenário de Sucesso - Atualizar Clientes
 test("Alterar cliente 'Gabriélen' para 'Gabi' com os seus respectivos dados, deve atualizar a tabela de cliente", () => {
     const clienteAltualizado = {
-        nome_cliente: 'Gabi',
-        matricula: "478956", 
-        telefone:"95489-6597"
+        nome_cliente: 'Gabi', 
+        matricula: '568946', 
+        telefone: '97895-4589'
     }
 
-    const idAlterar = 5
+    const idAlterar = 1
 
-    bibliotecaCliente.atualizarCliente(idAlterar, clienteAltualizado)
-    expect(bibliotecaCliente.listarCliente()).toEqual(listarCliente())
+    bibliotecaCliente.atualizarClientes(idAlterar, clienteAltualizado)
+    expect(bibliotecaCliente.listarCliente()).toEqual(dadosClienteAtualizar)
 })
 
 // Cenário de Sucesso - Deletar Clientes
-test("Apagar cliente de ID 7 deve remover o cliente da tabela", () => {
-    bibliotecaCliente.deletarCliente(7)
-    expect(bibliotecaCliente.listarCliente()).toEqual(listarCliente())
+test("Apagar cliente de ID 3 deve remover o cliente da tabela", () => {
+    bibliotecaCliente.deletarCliente(3)
+    expect(bibliotecaCliente.listarCliente()).toEqual(dadosClienteDeletar)
 })

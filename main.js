@@ -24,6 +24,21 @@ async function main() {
     } catch (error) {
         console.log("Erro: ", error)
     }
+
+    // Caso de sucesso para inserção de livros (todos parâmetros preenchidos)
+    try {
+        const livroInserido1 = await bibliotecaNegocioLivro.inserirLivros({
+            isbn: "978-85-390-0022-7", 
+            nome_livro: "A Bússola de Ouro",
+            nome_autor: "Phillip Pullman",
+            editora: "Ponto de Leitura",
+            ano_publi: "07/1995",
+            status: "disponível"
+        })
+        console.log("Livro inserido: ", livroInserido1)
+    } catch (error) {
+        console.log("Erro: ", error)
+    }
     
     // Caso de insucesso para inserção de livros (faltam parâmetros)
     try {
@@ -186,8 +201,8 @@ async function main() {
 
     // RETIRANDO UM LIVRO DA BIBLIOTECA
     try {
-        await bibliotecaPersistenciaLivro.retirarLivros(1, 2)
-        console.log("Livro  retirado com sucesso!")
+        await bibliotecaPersistenciaLivro.retirarLivros(4, 1)
+        console.log("Livro retirado com sucesso!")
     } catch (error) {
         console.log(error)
     }
@@ -206,6 +221,18 @@ async function main() {
             nome_cliente: "Ries",
             matricula: "154986", 
             telefone:"91547-2567"
+        })
+        console.log("Cliente inserido: ", clienteInserido)
+    } catch (error) {
+        console.log("Erro: ", error)
+    }
+
+    // Caso de sucesso para inserção de clientes (todos parâmetros preenchidos)
+    try {
+        const clienteInserido = await bibliotecaNegocioCliente.inserirCliente({
+            nome_cliente: "gabi",
+            matricula: "485613", 
+            telefone:"94516-6584"
         })
         console.log("Cliente inserido: ", clienteInserido)
     } catch (error) {

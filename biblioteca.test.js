@@ -69,6 +69,7 @@ test("Listar retorna os livros e seus clientes", () => {
     expect(bibliotecaLivro.listarLivrosClientes()).toEqual(dadosLivrosClientesInicial)
 })
 
+
 // Cenário de Sucesso - Listar Livros
 test("Listar retorna lista de livros", () => {
     expect(bibliotecaLivro.listarLivros()).toEqual(dadosLivrosInicial)
@@ -152,3 +153,4 @@ test("Apagar cliente de ID 3 deve remover o cliente da tabela", () => {
     bibliotecaCliente.deletarCliente(3)
     expect(bibliotecaCliente.listarCliente()).toEqual(dadosClienteDeletar)
 })
+

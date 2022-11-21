@@ -1,6 +1,9 @@
 ﻿const bibliotecaLivro = require('./persistencia/livro_persistencia')
 const bibliotecaCliente = require('./persistencia/cliente_persistencia')
 
+let dadosLivrosClientesInicial = bibliotecaLivro.listarLivrosClientes(
+    {id_livro: 1, nome_livro: 'A Seleção', cliente: {matricula: '489562', nome_cliente: 'Vivi', telefone: '94589-5462'}})
+    
 let dadosLivrosInicial = bibliotecaLivro.listarLivros(
     {id: 1, isbn: '978-85-390-0022-7', nome_livro: 'A Bússola de Ouro', nome_autor: 'Phillip Pulman', editora: 'Ponto de Leitura', 
         ano_publi: '07/1995', status: 'disponível'},
@@ -8,9 +11,6 @@ let dadosLivrosInicial = bibliotecaLivro.listarLivros(
         ano_publi: '10/2020', status: 'disponível'},
     {id: 3, isbn: '978-85-65765-48-0', nome_livro: 'Mentirosos', nome_autor: 'E. Lockhart', editora: 'Seguinte', 
         ano_publi: '05/2014', status: 'disponível'})
-
-let dadosLivrosClientesInicial = bibliotecaLivro.listarLivrosClientes(
-    {id_livro: 1, nome_livro: 'A Seleção', cliente: {matricula: '489562', nome_cliente: 'Vivi', telefone: '94589-5462'}})
 
 let dadosLivrosInserir = bibliotecaLivro.listarLivros(
     {id: 1, isbn: '978-85-390-0022-7', nome_livro: 'A Bússola de Ouro', nome_autor: 'Phillip Pulman', editora: 'Ponto de Leitura', 

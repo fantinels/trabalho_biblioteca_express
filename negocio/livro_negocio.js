@@ -1,10 +1,10 @@
-﻿const bibliotecaPersistencia = require('../persistencia/livro_persistencia')
+﻿const bibliotecaPersistenciaLivro = require('../persistencia/livro_persistencia')
 const {validarLivro} = require('./validacao')
 
 // Validação para INSERIR LIVROS
 async function inserirLivros(livros) {
     if(livros && livros.isbn && livros.nome_livro && livros.nome_autor && livros.editora && livros.ano_publi && livros.status) {
-        const produtoInserido = await bibliotecaPersistencia.inserirLivros(livros)
+        const produtoInserido = await bibliotecaPersistenciaLivro.inserirLivros(livros)
         return produtoInserido;
     }
     else {
@@ -16,21 +16,21 @@ async function inserirLivros(livros) {
 
 // Validação para LISTAR LIVROS E CLIENTES
 async function listarLivrosClientes() {
-    return await bibliotecaPersistencia.listarLivrosClientes()
+    return await bibliotecaPersistenciaLivro.listarLivrosClientes()
 }
 
 /////////////////////////////////////////////////////////////////////
 
 // Validação para LISTAR LIVROS
 async function listarLivros() {
-    return await bibliotecaPersistencia.listarLivros()
+    return await bibliotecaPersistenciaLivro.listarLivros()
 }
 
 /////////////////////////////////////////////////////////////////////
 
 // Validação para BUSCAR POR ID DE LIVROS
 async function buscarId(idLivro) {
-    const idProcurado = await bibliotecaPersistencia.buscarPorIdLivros(idLivro);
+    const idProcurado = await bibliotecaPersistenciaLivro.buscarPorIdLivros(idLivro);
     if(!idProcurado) {
         throw {id: 404, msg: "Livro não encontrado"};
     }
@@ -47,7 +47,7 @@ async function buscarNome(nomeLivro) {
         throw {id: 400, msg: "Falta parâmetro no nome"};
     }
 
-    return await bibliotecaPersistencia.buscarPorNomeLivros(nomeLivro);
+    return await bibliotecaPersistenciaLivro.buscarPorNomeLivros(nomeLivro);
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ async function buscarStatus(statusLivro) {
         throw {id: 400, msg: "Falta parâmetro no status"};
     }
 
-    return await bibliotecaPersistencia.buscarPorStatusLivros(statusLivro);
+    return await bibliotecaPersistenciaLivro.buscarPorStatusLivros(statusLivro);
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -69,14 +69,14 @@ async function buscarAutor(autorLivro) {
         throw {id: 400, msg: "Falta parâmetro no nome do autor"};
     }
 
-    return await bibliotecaPersistencia.buscarPorAutorLivros(autorLivro);
+    return await bibliotecaPersistenciaLivro.buscarPorAutorLivros(autorLivro);
 }
 
 /////////////////////////////////////////////////////////////////////
 
 // Validação para DELETAR UM LIVRO
 async function deletarLivro(idLivro) {
-    const livroDeletado = await bibliotecaPersistencia.deletarLivros(idLivro);
+    const livroDeletado = await bibliotecaPersistenciaLivro.deletarLivros(idLivro);
     if(!livroDeletado) {
         throw {id: 404, msg: "Livro não encontrado"};
     }
@@ -93,7 +93,7 @@ async function atualizarLivro(id, livros) {
         const livroAtualizado = await buscarId(id);
 
         if (livroAtualizado) {
-            return await bibliotecaPersistencia.atualizarLivros(id, livros)
+            return await bibliotecaPersistenciaLivro.atualizarLivros(id, livros)
         }
     }
     else {

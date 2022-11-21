@@ -53,7 +53,7 @@ async function listarLivros() {
 
     await cliente.connect();
 
-    const res = await cliente.query('SELECT * FROM livros');
+    const res = await cliente.query('SELECT * FROM livros ORDER BY id_livro');
 
     await cliente.end();
 
@@ -133,7 +133,7 @@ async function retirarLivros(id_livro, id_cliente) {
         res = await cliente.query('SELECT fn_retiralivros($1, $2)', 
         [id_livro, id_cliente]);
     } catch (error) {
-        throw 'Livro indisponível - NÃO pode ser retirado'
+        throw 'Livro indisponível ou quantidade máxima de livros atingida (Máximo 3 livros)'
     }
 
     finally {

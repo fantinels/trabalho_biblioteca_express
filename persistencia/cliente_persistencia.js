@@ -17,7 +17,7 @@ async function inserirCliente(clientes) {
 async function listarCliente() {
     const cliente = new Client(conexao)
     await cliente.connect();
-    const res = await cliente.query('SELECT * FROM cliente');
+    const res = await cliente.query('SELECT * FROM cliente ORDER BY id_cliente');
     await cliente.end();
     return res.rows;
   }

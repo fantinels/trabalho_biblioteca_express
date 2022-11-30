@@ -2,15 +2,16 @@
   "name": "biblioteca",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node app.js",
     "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
     "i": "^0.3.7",
     "pg": "^8.8.0"
   },

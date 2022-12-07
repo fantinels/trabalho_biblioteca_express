@@ -8,7 +8,7 @@
 
 ° A aplicação desenvolvida deverá contemplar alguns assuntos vistos em aula. Assim, a avaliação será baseada de acordo com as funcionalidades a serem desenvolvidas e com os conceitos de REST (vistos em aula) empregados para o desenvolvimento dessa aplicação.
 
-<h2>Avaliação<h2>
+<h2>Avaliação</h2>
 
 ° O conceito desse trabalho será baseado de acordo com as funcionalidades realizadas no trabalho e com os conceitos de REST e persistência empregados no trabalho. Abaixo segue a relação de conceitos e features a serem realizadas no trabalho:
 
@@ -28,7 +28,7 @@
   - Tratamento de erros, regras de negócio e exceções;
   - Utilizar autenticação aplicando técnicas de segurança adequadamente (OAuth e JWT); ou uma das seguintes funcionalidades não vistas em aula: Implantar os Web Services em um servidor na nuvem: Heroku, Digital Ocean, etc; Swagger; Testes Unitários para as regras de negócio.
 
-<h2>Apresentação e Entrega:<h2>
+<h2>Apresentação e Entrega:</h2>
 
 ° O trabalho deverá ser realizado individualmente ou em em dupla. Os alunos deverão apresentar o trabalho de forma online (ou na aula, caso tenhamos retornado). 
 
@@ -40,4 +40,4 @@
 
 ° Todos alunos deverão realizar a entrega e a ordem da apresentação vai depender da ordem de entrega de todos os integrantes do grupo.
 
-<h2>Data de entrega e apresentação: 13/12 ou 20/12.<h2>
+<h2>Data de entrega e apresentação: 13/12 ou 20/12.</h2>

@@ -1,4 +1,4 @@
-<h1>Instruções gerais:</1h>
+<h2>Instruções gerais:</h2>
 
 ° O trabalho possui um tema livre com algumas restrições quanto às funcionalidades, ou seja, o(s) aluno(s) poderá(ão) trabalhar com um domínio de aplicação de seu interesse. 
 
@@ -8,7 +8,7 @@
 
 ° A aplicação desenvolvida deverá contemplar alguns assuntos vistos em aula. Assim, a avaliação será baseada de acordo com as funcionalidades a serem desenvolvidas e com os conceitos de REST (vistos em aula) empregados para o desenvolvimento dessa aplicação.
 
-<h1>Avaliação<h1>
+<h2>Avaliação<h2>
 
 ° O conceito desse trabalho será baseado de acordo com as funcionalidades realizadas no trabalho e com os conceitos de REST e persistência empregados no trabalho. Abaixo segue a relação de conceitos e features a serem realizadas no trabalho:
 
@@ -28,7 +28,7 @@
   - Tratamento de erros, regras de negócio e exceções;
   - Utilizar autenticação aplicando técnicas de segurança adequadamente (OAuth e JWT); ou uma das seguintes funcionalidades não vistas em aula: Implantar os Web Services em um servidor na nuvem: Heroku, Digital Ocean, etc; Swagger; Testes Unitários para as regras de negócio.
 
-<h1>Apresentação e Entrega:<h1>
+<h2>Apresentação e Entrega:<h2>
 
 ° O trabalho deverá ser realizado individualmente ou em em dupla. Os alunos deverão apresentar o trabalho de forma online (ou na aula, caso tenhamos retornado). 
 

@@ -1,3 +1,9 @@
+<h2>Trabalho feito por:</h2>
+<div>
+<img src="https://github.com/fantinels.png" width="45" height="45" style="max-width: 100%;">
+<img src="https://github.com/Gabrielenfcunha.png" width="45" height="45" style="max-width: 100%;">
+</div>
+
 <h2>Instruções gerais:</h2>
 
 ° O trabalho possui um tema livre com algumas restrições quanto às funcionalidades, ou seja, o(s) aluno(s) poderá(ão) trabalhar com um domínio de aplicação de seu interesse. 

@@ -1,5 +1,7 @@
 const bibliotecaNegocioLivro = require('./negocio/livro_negocio');
 const bibliotecaPersistenciaLivro = require('./persistencia/livro_persistencia');
+const bibliotecaPersistenciaCliente = require('./persistencia/cliente_persistencia')
+const bibliotecaNegocioCliente = require('./negocio/cliente_negocio');
 const express = require('express')
 const app = express()
 const port = 3000

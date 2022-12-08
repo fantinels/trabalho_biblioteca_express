@@ -160,23 +160,67 @@ app.get('/retirar/idL/idC', async (req, res) => {
 // ver como como fica a função para retirar e devolver
 
 // CLIENTE
-app.get('/clientes', (req, res) => {
-    res.send("Clientes Procurados!");
+app.get('/clientes', async (req, res) => {
+    const listarClientes = await bibliotecaNegocioCliente.listarCliente();
+    res.json(listarClientes);
   })
 
-app.get('/clientes/:id', (req, res) => {
-    res.send("Clientes Procurados por ID!");
+app.get('/clientes/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const buscarClientes = await bibliotecaNegocioCliente.buscarPorIdCliente(id);
+        res.json(buscarClientes)
+    } catch (error) {
+        res.json("Erro: ", error)
+    }
 })
 
-app.post('/clientes', (req, res) => {
-    res.send("Cliente inserido!")
+app.post('/clientes', async (req, res) => {
+    const clientes = req.body;
+    try {
+        const buscarClientes2 = await bibliotecaNegocioCliente.inserirCliente(clientes);
+        res.status(201).json(buscarClientes2) 
+    } catch (error) {
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        } 
+        else {
+            res.status(500).json({Erro: "Erro na Aplicação"});
+        }
+    }
+
 })
 
-app.delete('/clientes/:id', (req, res) => {
+app.delete('/clientes/:id', async (req, res) => {
+    const id = req.params.id;
+    try{
+        const clienteDeletado = await bibliotecaNegocioCliente.deletarCliente(id);
+        console.log(clienteDeletado);
+    }catch(error){
+        if(error && error.id) {
+            res.status(error.id).json({Erro: error.msg})
+        }
+        else {
+            res.status(500).json({Erro:"Erro na Aplicação"});
+        }  
+    }
     res.send("Cliente deletado!")
 })
 
-app.put('/clientes/:id', (req, res) => {
+app.put('/clientes/:id',async (req, res) => {
+    const id = req.params.id;
+    const clientes = req.body;
+    try{
+        const clienteAtualizado2 = await bibliotecaNegocioCliente.atualizarCliente(id, clientes)
+        res.json(clienteAtualizado2)
+    } catch(error){
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        }
+        else {
+            res.status(500).json({Erro: "Erro na Aplicação"});
+        } 
+    }
     res.send("Cliente atualizado!")
 })
 

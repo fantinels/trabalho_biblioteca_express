@@ -101,6 +101,55 @@ async function atualizarLivro(id, livros) {
     }
 }
 
+/////////////////////////////////////////////////////////////////////
+
+// Validação para RETIRAR UM LIVRO
+async function retiraLivro(matricula, id_livro) {
+    console.log('Verificando se este livro existe em nosso sistema ...');
+    const livroExiste = await buscarId(id_livro);
+
+    if (livroExiste) {
+        console.log('Livro Existente! Prosseguindo...')
+    }
+
+    console.log('Verificando se o livro está disponível ...')
+    const livroDisp = await bibliotecaPersistenciaLivro.verificaDisponibilidade(id_livro);
+
+    if (!livroDisp) {
+        console.log('Livro INDISPONÍVEL! Não pode ser retirado!');
+        return
+    }
+
+    console.log('Registrando o aluguel do livro ...');
+    const retirada = await bibliotecaPersistenciaLivro.retirarLivros(matricula, id_livro);
+
+    if (retirada) {
+        console.log('Livro retirado com sucesso');
+    }
+
+    console.log('Atualizando status do livro ...');
+    const status = await bibliotecaPersistenciaLivro.indisponibilizaLivro(id_livro);
+
+    if (status) {
+        console.log('Aluguel registrado com sucesso');
+    }
+}
+
+/////////////////////////////////////////////////////////////////////
+
+// Validação para DEVOLVER UM LIVRO
+async function devolveLivro(id_livro) {
+    const livroDevolvido = await buscarId(id_livro);
+
+    if (livroDevolvido) {
+        console.log('Redisponibilizando livro ...')
+        await bibliotecaPersistenciaLivro.disponibilizaLivro(id_livro);
+
+        console.log('Registrando devolução ...');
+        await bibliotecaPersistenciaLivro.devolverLivros(id_livro);
+    }
+}
+
 module.exports = {
     inserirLivros,
     listarLivrosClientes,
@@ -110,5 +159,7 @@ module.exports = {
     buscarStatus,
     buscarAutor,
     deletarLivro,
-    atualizarLivro
+    atualizarLivro,
+    retiraLivro,
+    devolveLivro
 }

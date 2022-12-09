@@ -6,11 +6,11 @@ async function main() {
     // Caso de sucesso para inserção de livros (todos parâmetros preenchidos)
     try {
         const livroInserido1 = await bibliotecaNegocioLivro.inserirLivros({
-            isbn: "978-85-390-0022-7", 
-            nome_livro: "A Bússola de Ouro",
-            nome_autor: "Phillip Pullman",
-            editora: "Ponto de Leitura",
-            ano_publi: "07/1995",
+            isbn: "978-85-65765-57-2", 
+            nome_livro: "Por Lugares Incríveis",
+            nome_autor: "Jennifer Niven",
+            editora: "Seguinte",
+            ano_publi: "01/2015",
             status: "disponível"
         })
         console.log("Livro inserido: ", livroInserido1)
@@ -178,15 +178,10 @@ async function main() {
     }
 
     // RETIRANDO UM LIVRO DA BIBLIOTECA
-    try {
-        await bibliotecaPersistenciaLivro.retirarLivros(4, 1)
-        console.log("Livro retirado com sucesso!")
-    } catch (error) {
-        console.log(error)
-    }
+    await bibliotecaNegocioLivro.retiraLivro('123654', 2)
 
     // DEVOLVENDO UM LIVRO DA BIBLIOTECA
-    await bibliotecaPersistenciaLivro.devolverLivros(3)
+    await bibliotecaNegocioLivro.devolveLivro(1)
     console.log("Livro devolvido com sucesso!")
 
 }

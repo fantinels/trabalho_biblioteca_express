@@ -1,5 +1,5 @@
 const bibliotecaNegocioLivro = require('./negocio/livro_negocio');
-const bibliotecaPersistenciaLivro = require('./persistencia/livro_persistencia');
+const bibliotecaNegocioCliente = require('./negocio/cliente_negocio');
 const express = require('express')
 const app = express()
 const port = 3000
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.get('/livroseclientes', async(req, res) => {
     try {
         const livrosClientes = await bibliotecaNegocioLivro.listarLivrosClientes()
-        res.json(livrosClientes);
+        res.status(200).json(livrosClientes);
     } catch (error) {
         res.status(500).json({Erro: "Erro na Aplicação"});
     }
@@ -21,7 +21,7 @@ app.get('/livroseclientes', async(req, res) => {
 app.get('/livros', async(req, res) => {
     try {
         const livros = await bibliotecaNegocioLivro.listarLivros()
-        res.json(livros);
+        res.status(200).json(livros);
     } catch (error) {
         res.status(500).json({Erro: "Erro na Aplicação"});
     }
@@ -145,40 +145,112 @@ app.put('/livros/:id', async (req, res) => {
     }
 })
 
-app.get('/retirar/idL/idC', async (req, res) => {
-    const idL = req.params.idL;
-    const idC = req.params.idC;
-
+app.post('/retirar', async (req, res) => {
+    const livros = req.body;
+    
     try {
-        const retiraLivro = bibliotecaPersistenciaLivro.retirarLivros(idL, idC);
-        res.status(200).json(retiraLivro);
+        await bibliotecaNegocioLivro.retiraLivro(livros.matricula, livros.id_livro)
+        res.status(201);
+        res.send("Retirada feita com sucesso!");
     } catch (error) {
-        res.json(error);
-    } 
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        } else {
+            res.status(500).json({Erro: "Erro na Aplicação"})
+        }
+    }
+    
+    
 })
 
-// ver como como fica a função para retirar e devolver
+app.delete('/devolver', async (req, res) => {
+    const devolucao = req.body;
+    
+    try {
+        await bibliotecaNegocioLivro.devolveLivro(devolucao.id_livro);
+        res.status(200);
+        res.send('Devolução feita com sucesso');
+    } catch (error) {
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        } else {
+            res.status(500).json({Erro: "Erro na Aplicação"})
+        }
+    }
+
+})
 
 // CLIENTE
-app.get('/clientes', (req, res) => {
-    res.send("Clientes Procurados!");
-  })
-
-app.get('/clientes/:id', (req, res) => {
-    res.send("Clientes Procurados por ID!");
+app.get('/clientes', async (req, res) => {
+    try {
+        const clientes = await bibliotecaNegocioCliente.listarCliente()
+        res.status(200).json(clientes);
+    } catch (error) {
+        res.status(500).json({Erro: "Erro na Aplicação"});
+    }
 })
 
-app.post('/clientes', (req, res) => {
-    res.send("Cliente inserido!")
+app.get('/clientes/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const buscarClientes = await bibliotecaNegocioCliente.buscarPorIdCliente(id);
+        res.json(buscarClientes)
+    } catch (error) {
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        }
+        else {
+            res.status(500).json({Erro: "Erro na Aplicação"});
+        }
+    }
 })
 
-app.delete('/clientes/:id', (req, res) => {
-    res.send("Cliente deletado!")
+app.post('/clientes', async (req, res) => {
+    const clientes = req.body;
+    try {
+        const buscarClientes2 = await bibliotecaNegocioCliente.inserirCliente(clientes);
+        res.status(201).json(buscarClientes2) 
+    } catch (error) {
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        } 
+        else {
+            res.status(500).json({Erro: "Erro na Aplicação"});
+        }
+    }
 })
 
-app.put('/clientes/:id', (req, res) => {
-    res.send("Cliente atualizado!")
+app.delete('/clientes/:id', async (req, res) => {
+    const id = req.params.id;
+    try{
+        const clienteDeletado = await bibliotecaNegocioCliente.deletarCliente(id);
+        res.json(clienteDeletado);
+    }catch(error){
+        if(error && error.id) {
+            res.status(error.id).json({Erro: error.msg})
+        }
+        else {
+            res.status(500).json({Erro:"Erro na Aplicação"});
+        }  
+    }
 })
+
+app.put('/clientes/:id', async (req, res) => {
+    const id = req.params.id;
+    const clientes = req.body;
+    try{
+        const clienteAtualizado2 = await bibliotecaNegocioCliente.atualizarCliente(id, clientes)
+        res.json(clienteAtualizado2)
+    } catch(error){
+        if (error && error.id) {
+            res.status(error.id).json({Erro: error.msg});
+        }
+        else {
+            res.status(500).json({Erro: "Erro na Aplicação"});
+        } 
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

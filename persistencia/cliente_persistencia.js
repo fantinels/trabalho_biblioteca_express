@@ -4,9 +4,7 @@ const { conexao } = require('./conexao')
 // Função para INSERIR CLIENTES
 async function inserirCliente(clientes) {
   const cliente = new Client(conexao)
-
   await cliente.connect();
-
   const res = await cliente.query('INSERT INTO cliente(nome_cliente,matricula,telefone) VALUES ($1,$2,$3) RETURNING *', 
       [clientes.nome_cliente,clientes.matricula,clientes.telefone]);
   await cliente.end();
@@ -43,14 +41,11 @@ async function deletarCliente(id) {
 // Função para ATUALIZAR UM CLIENTE
 async function atualizarClientes(id, clientes) {
     const cliente = new Client(conexao)
-
     await cliente.connect();
-
-    const res = 
-    await cliente.query('UPDATE cliente SET nome_cliente=$1,matricula=$2,telefone=$3 where id_cliente = $4 RETURNING *', 
-        [clientes.nome_cliente, clientes.matricula, clientes.telefone, id]);
+    const res = await cliente.query(`UPDATE cliente SET nome_cliente = $1, matricula = $2, telefone = $3 
+                                        WHERE id_cliente = $4 RETURNING *`, 
+                                        [clientes.nome_cliente, clientes.matricula, clientes.telefone, id]);
     await cliente.end();
-
     return res.rows[0];
 
 }

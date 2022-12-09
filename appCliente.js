@@ -10,21 +10,9 @@ async function main() {
     // Caso de sucesso para inserção de clientes (todos parâmetros preenchidos)
     try {
         const clienteInserido = await bibliotecaNegocioCliente.inserirCliente({
-            nome_cliente: "Ries",
-            matricula: "154986", 
-            telefone:"91547-2567"
-        })
-        console.log("Cliente inserido: ", clienteInserido)
-    } catch (error) {
-        console.log("Erro: ", error)
-    }
-
-    // Caso de sucesso para inserção de clientes (todos parâmetros preenchidos)
-    try {
-        const clienteInserido = await bibliotecaNegocioCliente.inserirCliente({
-            nome_cliente: "gabi",
-            matricula: "485613", 
-            telefone:"94516-6584"
+            nome_cliente: "Poliana",
+            matricula: "444444", 
+            telefone:"91458-4581"
         })
         console.log("Cliente inserido: ", clienteInserido)
     } catch (error) {

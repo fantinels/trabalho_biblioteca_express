@@ -146,10 +146,10 @@ app.put('/livros/:id', async (req, res) => {
 })
 
 app.post('/retirar', async (req, res) => {
-    const livros = req.body;
+    const retirar = req.body;
     
     try {
-        await bibliotecaNegocioLivro.retiraLivro(livros.matricula, livros.id_livro)
+        await bibliotecaNegocioLivro.retiraLivro(retirar.matricula, retirar.id_livro)
         res.status(201);
         res.send("Retirada feita com sucesso!");
     } catch (error) {
@@ -164,10 +164,10 @@ app.post('/retirar', async (req, res) => {
 })
 
 app.delete('/devolver', async (req, res) => {
-    const devolucao = req.body;
+    const devolver = req.body;
     
     try {
-        await bibliotecaNegocioLivro.devolveLivro(devolucao.id_livro);
+        await bibliotecaNegocioLivro.devolveLivro(devolver.id_livro);
         res.status(200);
         res.send('Devolução feita com sucesso');
     } catch (error) {
@@ -192,9 +192,10 @@ app.get('/clientes', async (req, res) => {
 
 app.get('/clientes/:id', async (req, res) => {
     const id = req.params.id;
+
     try {
-        const buscarClientes = await bibliotecaNegocioCliente.buscarPorIdCliente(id);
-        res.json(buscarClientes)
+        const buscarId = await bibliotecaNegocioCliente.buscarPorIdCliente(id);
+        res.json(buscarId)
     } catch (error) {
         if (error && error.id) {
             res.status(error.id).json({Erro: error.msg});
@@ -207,13 +208,14 @@ app.get('/clientes/:id', async (req, res) => {
 
 app.post('/clientes', async (req, res) => {
     const clientes = req.body;
+
     try {
-        const buscarClientes2 = await bibliotecaNegocioCliente.inserirCliente(clientes);
-        res.status(201).json(buscarClientes2) 
+        const clienteInserir = await bibliotecaNegocioCliente.inserirCliente(clientes);
+        res.status(201).json(clienteInserir) 
     } catch (error) {
         if (error && error.id) {
             res.status(error.id).json({Erro: error.msg});
-        } 
+        }
         else {
             res.status(500).json({Erro: "Erro na Aplicação"});
         }
@@ -222,6 +224,7 @@ app.post('/clientes', async (req, res) => {
 
 app.delete('/clientes/:id', async (req, res) => {
     const id = req.params.id;
+
     try{
         const clienteDeletado = await bibliotecaNegocioCliente.deletarCliente(id);
         res.json(clienteDeletado);
@@ -233,14 +236,16 @@ app.delete('/clientes/:id', async (req, res) => {
             res.status(500).json({Erro:"Erro na Aplicação"});
         }  
     }
+
 })
 
-app.put('/clientes/:id', async (req, res) => {
+app.put('/clientes/:id',async (req, res) => {
     const id = req.params.id;
     const clientes = req.body;
+
     try{
-        const clienteAtualizado2 = await bibliotecaNegocioCliente.atualizarCliente(id, clientes)
-        res.json(clienteAtualizado2)
+        const clienteAtualizado = await bibliotecaNegocioCliente.atualizarCliente(id, clientes)
+        res.json(clienteAtualizado)
     } catch(error){
         if (error && error.id) {
             res.status(error.id).json({Erro: error.msg});
@@ -250,7 +255,6 @@ app.put('/clientes/:id', async (req, res) => {
         } 
     }
 })
-
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
